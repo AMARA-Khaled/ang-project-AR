@@ -7,14 +7,35 @@
   for = "/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, OPTIONS, HEAD"
+    Access-Control-Allow-Headers = "*"
 
 [[headers]]
   for = "/*.glb"
   [headers.values]
     Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, OPTIONS, HEAD"
     Content-Type = "model/gltf-binary"
+    Cache-Control = "public, max-age=31536000"
 
 [[headers]]
   for = "/models/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, OPTIONS, HEAD"
+
+[[headers]]
+  for = "/models/**/*.glb"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, OPTIONS, HEAD"
+    Content-Type = "model/gltf-binary"
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/models/burger/source/*.glb"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, OPTIONS, HEAD"
+    Content-Type = "model/gltf-binary"
+    Cache-Control = "public, max-age=31536000"

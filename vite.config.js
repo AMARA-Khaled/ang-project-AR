@@ -26,10 +26,19 @@ export default defineConfig({
     port: 3000,
     headers: {
       'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, OPTIONS, HEAD',
+      'Access-Control-Allow-Headers': '*',
     },
   },
-  // Optimize static assets
-  assetsInclude: ['**/*.glb', '**/*.gltf'],
+  preview: {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, OPTIONS, HEAD',
+      'Access-Control-Allow-Headers': '*',
+    },
+  },
+  // Optimize static assets - include all 3D formats
+  assetsInclude: ['**/*.glb', '**/*.gltf', '**/*.usdz'],
   // Ensure public directory is correctly configured
   publicDir: 'public',
 })
