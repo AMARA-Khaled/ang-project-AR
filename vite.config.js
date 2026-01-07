@@ -9,17 +9,13 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          // Separate Three.js and React into their own chunks
-          'three': ['three'],
           'react-vendor': ['react', 'react-dom'],
-          'three-fiber': ['@react-three/fiber', '@react-three/drei'],
         }
       }
     },
-    // Enable compression
     minify: 'esbuild',
-    // Optimize chunk size
-    chunkSizeWarningLimit: 1000,
+    // Target modern browsers for smaller bundle
+    target: 'es2020',
   },
   server: {
     // Enable HTTPS for AR testing (required for some AR features)
@@ -28,5 +24,5 @@ export default defineConfig({
     port: 3000,
   },
   // Optimize static assets
-  assetsInclude: ['**/*.obj', '**/*.glb', '**/*.gltf'],
+  assetsInclude: ['**/*.glb', '**/*.gltf'],
 })
