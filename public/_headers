@@ -2,16 +2,24 @@
 /*
   Access-Control-Allow-Origin: *
 
-# Headers specifically for 3D model files
-/models/*
+# Headers specifically for 3D model files (GLB)
+/models/*.glb
   Access-Control-Allow-Origin: *
   Content-Type: model/gltf-binary
   Cache-Control: public, max-age=31536000
 
-/*.glb
+/models/**/*.glb
   Access-Control-Allow-Origin: *
   Content-Type: model/gltf-binary
+  Cache-Control: public, max-age=31536000
 
-/*.gltf
+# Headers for iOS AR (USDZ)
+/models/*.usdz
   Access-Control-Allow-Origin: *
-  Content-Type: model/gltf+json
+  Content-Type: model/vnd.usdz+zip
+  Cache-Control: public, max-age=31536000
+
+/models/**/*.usdz
+  Access-Control-Allow-Origin: *
+  Content-Type: model/vnd.usdz+zip
+  Cache-Control: public, max-age=31536000
