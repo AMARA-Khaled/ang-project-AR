@@ -4,7 +4,7 @@ const ARModal = ({ dish, onClose }) => {
   const modelViewerRef = useRef(null);
   
   // For deployed sites, we need absolute URLs for AR to work properly
-  // Android Scene Viewer and iOS Quick Look both require accessible URLs
+  // Android Scene Viewer requires accessible URLs
   const getAbsoluteUrl = (path) => {
     // If already absolute, return as-is
     if (path.startsWith('http')) return path;
@@ -14,8 +14,6 @@ const ARModal = ({ dish, onClose }) => {
   };
 
   const arSrc = getAbsoluteUrl(dish.modelPath);
-  // iOS requires USDZ format - derive path from GLB path
-  const iosSrc = getAbsoluteUrl(dish.iosModelPath || dish.modelPath.replace('.glb', '.usdz'));
 
   useEffect(() => {
     // Prevent body scroll when modal is open
@@ -57,9 +55,8 @@ const ARModal = ({ dish, onClose }) => {
         <model-viewer
           ref={modelViewerRef}
           src={arSrc}
-          ios-src={iosSrc}
           ar
-          ar-modes="webxr scene-viewer quick-look"
+          ar-modes="webxr scene-viewer"
           camera-controls
           auto-rotate
           ar-scale="fixed"
