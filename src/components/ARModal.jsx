@@ -2,9 +2,20 @@ import React, { useEffect, useRef } from "react";
 
 const ARModal = ({ dish, onClose }) => {
   const modelViewerRef = useRef(null);
-  const arSrc = `${dish.modelPath}?v=${Date.now()}`;
+  
+  // For deployed sites, we need absolute URLs for AR to work properly
+  // Android Scene Viewer and iOS Quick Look both require accessible URLs
+  const getAbsoluteUrl = (path) => {
+    // If already absolute, return as-is
+    if (path.startsWith('http')) return path;
+    // Build absolute URL from current origin
+    const origin = window.location.origin;
+    return `${origin}${path}`;
+  };
+
+  const arSrc = getAbsoluteUrl(dish.modelPath);
   // iOS requires USDZ format - derive path from GLB path
-  const iosSrc = dish.iosModelPath || dish.modelPath.replace('.glb', '.usdz');
+  const iosSrc = getAbsoluteUrl(dish.iosModelPath || dish.modelPath.replace('.glb', '.usdz'));
 
   useEffect(() => {
     // Prevent body scroll when modal is open
