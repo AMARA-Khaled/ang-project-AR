@@ -16,13 +16,20 @@ export default defineConfig({
     minify: 'esbuild',
     // Target modern browsers for smaller bundle
     target: 'es2020',
+    // Copy public folder assets as-is
+    copyPublicDir: true,
   },
   server: {
     // Enable HTTPS for AR testing (required for some AR features)
     // https: true,
     host: true, // Allow external access for mobile testing
     port: 3000,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
   },
   // Optimize static assets
   assetsInclude: ['**/*.glb', '**/*.gltf'],
+  // Ensure public directory is correctly configured
+  publicDir: 'public',
 })
