@@ -3,6 +3,8 @@ import React, { useEffect, useRef } from "react";
 const ARModal = ({ dish, onClose }) => {
   const modelViewerRef = useRef(null);
   const arSrc = `${dish.modelPath}?v=${Date.now()}`;
+  // iOS requires USDZ format - derive path from GLB path
+  const iosSrc = dish.iosModelPath || dish.modelPath.replace('.glb', '.usdz');
 
   useEffect(() => {
     // Prevent body scroll when modal is open
@@ -44,6 +46,7 @@ const ARModal = ({ dish, onClose }) => {
         <model-viewer
           ref={modelViewerRef}
           src={arSrc}
+          ios-src={iosSrc}
           ar
           ar-modes="webxr scene-viewer quick-look"
           camera-controls
